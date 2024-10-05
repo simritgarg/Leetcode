@@ -5,13 +5,13 @@ class Solution {
         int[] s1Count = new int[26];
         int[] s2Count = new int[26];
 
-        // Count the frequency of characters in s1 and the first window of s2
+        
         for (int i = 0; i < s1.length(); i++) {
             s1Count[s1.charAt(i) - 'a']++;
             s2Count[s2.charAt(i) - 'a']++;
         }
 
-        // Slide the window over s2
+        
         for (int i = 0; i < s2.length() - s1.length(); i++) {
             if (matches(s1Count, s2Count)) return true;
             // Update the window
@@ -19,7 +19,7 @@ class Solution {
             s2Count[s2.charAt(i + s1.length()) - 'a']++;
         }
 
-        // Check the last window
+        
         return matches(s1Count, s2Count);
     }
 
