@@ -13,6 +13,7 @@ class Solution {
     //     return fibo(n-1,dp) + fibo(n-2,dp);
     // }
 
+    //TABULATION
     public int fib(int n) {
         if(n<=1) return n;
         int[] dp = new int[n+1];
