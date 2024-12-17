@@ -2,9 +2,17 @@ class Solution {
     public boolean rotateString(String s, String goal) {
         if (s.length() != goal.length()) return false;
 
-        // below code is not passing all test cases :>
-        String str = s.concat(s);
-        return str.contains(goal);
+        // Method - 1
+        // String str = s.concat(s);
+        // return str.contains(goal);
+
+        //method - 2 (substring concept)
+        String str = s;
+        for (int i = 0; i < s.length(); i++) {
+            str = str.substring(1) + str.charAt(0);
+            if (str.equals(goal)) return true;
+        }
+        return false;
 
 
         // StringBuilder res = new StringBuilder();
