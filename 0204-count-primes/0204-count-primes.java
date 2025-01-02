@@ -14,6 +14,14 @@ class Solution {
 
             }
         }
+         for (int i = 3; i * i < n; i += 2) {
+            if (prime[i]) {
+                // Mark multiples of i as non-prime
+                for (int j = i * i; j < n; j += i) {
+                    prime[j] = false;
+                }
+            }
+        }
         int count = 0;
         for (int i = 2; i < n; i++) {
             if (prime[i]) {
