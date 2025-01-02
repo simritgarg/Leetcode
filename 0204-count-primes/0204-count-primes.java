@@ -1,21 +1,26 @@
 class Solution {
-    public int countPrimes(int n) {
-        int count = 2;
-        if(n<=1) return 0;
-        if(n==2) return 0;
-        if(n==3) return 1;
-        for(int i=4;i<n;i++){
-            if(checkPrime(i)){
+    public int countPrimes(int n){
+        if (n <= 2) return 0;
+        boolean[] prime = new boolean[n];
+        for (int i = 2; i < n; i++) {
+            prime[i] = true;
+        }
+        for(int i=2;i*i<n;i++){
+            if(prime[i])
+            {
+                for(int j=i*i;j<n;j+=i){
+                    prime[j] = false;
+                }
+
+            }
+        }
+        int count = 0;
+        for (int i = 2; i < n; i++) {
+            if (prime[i]) {
                 count++;
             }
         }
+
         return count;
     }
-    public boolean checkPrime(int num){
-            for(int j=2;j*j<num;j++){
-                if(num%j==0) return false;
-            }
-            return true;
-        }
-
-    }
+}
