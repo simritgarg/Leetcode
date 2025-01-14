@@ -5,18 +5,17 @@ class Solution {
         int count = 0;
         Arrays.sort(people);
         while(left <= right){
-            if(people[right] + people[left] <= limit){
-               // count++;
+            if(people[right] + people[left] <= limit && left!=right){
+                count++;
                 left++;
             }
-            // else if(left==right){
-            //     count++;
-            // }
-            // else{
-                // count++;
-            // }
+            else if(left==right){
+                count++;
+            }
+            else{
+                count++;
+            }
             right--;
-            count++;
             
         }
         return count;
