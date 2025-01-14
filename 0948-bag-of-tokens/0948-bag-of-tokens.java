@@ -3,23 +3,29 @@ class Solution {
         int score = 0;
         int left = 0;
         int right = tokens.length-1;
-        int maxScoreGot = 0;
         Arrays.sort(tokens);
+        int max = 0;
         while(left<=right){
-            if(power>=tokens[left]){
+            if(tokens[left]<=power){
+                power -= tokens[left];
                 score++;
-                power-=tokens[left++];
-                maxScoreGot = Math.max(maxScoreGot,score);
+                left++;
+                max = Math.max(max,score);
             }
-            else if(score>0){
+            else if(score>=1){
+                power += tokens[right];
                 score--;
-                power+=tokens[right--];
+                right--;
             }
             else{
+
                 break;
             }
+
         }
-        return maxScoreGot;
+        return max;
+
+
 
     }
 }
