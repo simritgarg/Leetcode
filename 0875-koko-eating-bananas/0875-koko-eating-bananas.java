@@ -27,6 +27,3 @@ class Solution {
         return low;
     }
 }
-// 3,6,7,11 - > min =3 and max =11
-// 3..11 k=min h--; if(time>h) k++ - > k=4
-// 1,2,3,4->10h X
