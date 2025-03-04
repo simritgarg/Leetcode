@@ -21,6 +21,9 @@ class Solution {
         // }
         // return true;
 
+
+        // Method - 3 Same as Method-2 
+        // but still little optimized as it reduces the cache misses
         int[] f = new int[26];
         for(int i: s.toCharArray()){
             f[i - 'a']++;
