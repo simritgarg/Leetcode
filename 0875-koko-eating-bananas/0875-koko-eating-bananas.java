@@ -8,7 +8,7 @@ class Solution {
     }
     public int calculate_Hrs(int[] piles, int k){
         int hrs = 0;
-        for (int pile : piles){
+        for (int i : piles){
             // hrs += Math.ceil((double)piles[i]/k);
             hrs += (i + k - 1) / k;
         }
