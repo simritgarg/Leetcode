@@ -1,30 +1,26 @@
 class Solution {
     public String frequencySort(String s) {
-         Map<Character, Integer> mp = new HashMap<>();
+        int[] freq = new int[256];  // Supports all ASCII characters
         for (char c : s.toCharArray()) {
-            mp.put(c, mp.getOrDefault(c, 0) + 1);
+            freq[c]++;  // Count frequency
         }
 
-        int size = mp.size();
-        StringBuilder str = new StringBuilder();
-        while(size-- > 0){
-            int max = 0;
-            char c = 'a';
-            for(Map.Entry<Character,Integer> e : mp.entrySet()){
-                int value = e.getValue();
-                if(max<value){
-                    max = value;
-                    c = e.getKey();
-                }
-            }
-            mp.remove(c);
-            for(int i=1;i<=max;i++){
-                str.append(c);
-            }
-
-
+        // Step 2: Store characters in a list and sort them by frequency
+        Character[] chars = new Character[256];
+        for (int i = 0; i < 256; i++) {
+            chars[i] = (char) i; // Store each character
         }
-        return str.toString();
-        
+
+        Arrays.sort(chars, (a, b) -> freq[b] - freq[a]); // Sort by frequency in descending order
+
+        // Step 3: Build the sorted string
+        StringBuilder result = new StringBuilder();
+        for (char c : chars) {
+            if (freq[c] > 0) {  // Append only if frequency > 0
+                result.append(String.valueOf(c).repeat(freq[c]));
+            }
+        }
+
+        return result.toString();
     }
 }
