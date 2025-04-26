@@ -11,9 +11,9 @@ class Solution {
             if(windowLen-maxFreq>k){
                 freq[s.charAt(i)-'A']--;
                 i++;
-                
+                windowLen = j-i+1;
             }
-            windowLen = j-i+1;
+            
             maxLen = Math.max(maxLen,windowLen);
 
         }
