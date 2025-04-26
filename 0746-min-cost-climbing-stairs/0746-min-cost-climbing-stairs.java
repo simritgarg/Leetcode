@@ -1,10 +1,8 @@
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
-        int[] dp1 = new int[cost.length];
-        Arrays.fill(dp1,-1);
-        // int[] dp2 = new int[cost.length];
-        // Arrays.fill(dp2,-1);
-        return Math.min(totalCost(cost,0,dp1),totalCost(cost,1,dp1));
+        int[] dp = new int[cost.length];
+        Arrays.fill(dp,-1);
+        return Math.min(totalCost(cost,0,dp),totalCost(cost,1,dp));
     }
     public int totalCost(int[] cost, int idx, int[] dp){
         // base case
