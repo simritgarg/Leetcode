@@ -5,7 +5,6 @@ class Solution {
         return Math.min(totalCost(cost,0,dp),totalCost(cost,1,dp));
     }
     public int totalCost(int[] cost, int idx, int[] dp){
-        // base case
         if(idx >= cost.length) return 0;
         if(dp[idx]!=-1) return dp[idx];
         int pick = cost[idx] + totalCost(cost,idx+2,dp);
