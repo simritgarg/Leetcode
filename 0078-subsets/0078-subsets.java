@@ -1,21 +1,15 @@
 class Solution {
-    private List<Integer> temp = new ArrayList<>();
-    private List<List<Integer>> result = new ArrayList<>();
-
-    private void recursive(int[] nums, int index) {
-        if (index >= nums.length)
-            return;
-        for (int i = index; i < nums.length; i++) {
-            temp.add(nums[i]);
-            result.add(new ArrayList<>(temp));
-            recursive(nums, i + 1);
-            temp.remove(temp.size() - 1);
-        }
-    }
-
     public List<List<Integer>> subsets(int[] nums) {
-        result.add(new ArrayList<>());
-        recursive(nums, 0);
-        return result;
+        List<List<Integer>> res = new ArrayList<>();
+        int n=nums.length;
+        //int n = Math.pow(2,nums.length); // in-built;
+        for(int i=0;i<(1<<n);i++){
+            List<Integer> ans = new ArrayList<>();
+            for(int j=0;j<nums.length;j++){
+                if((i & (1<<j)) != 0) ans.add(nums[j]);
+            }
+            res.add(ans);
+        }
+        return res;
     }
 }
