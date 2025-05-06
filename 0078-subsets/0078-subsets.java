@@ -16,6 +16,6 @@ class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         result.add(new ArrayList<>());
         recursive(nums, 0);
-        return result;
-    }
+        return result;
+    }
 }
