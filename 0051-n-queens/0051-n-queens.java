@@ -1,48 +1,49 @@
 class Solution {
-    private List<List<String>> result;
-    private boolean isSafe(int[][]matrix,int r,int c){
-        for(int i=r-1;i>=0;i--){
-            if(matrix[i][c]==1)return false;
-        }
-        for(int i=r-1,j=c-1;i>=0 && j>=0; i--,j--){
-            if(matrix[i][j]==1)return false;
-        }
-        for(int i=r-1,j=c+1;i>=0 && j<matrix[0].length; i--,j++){
-            if(matrix[i][j]==1)return false;
-        }
-        return true;
-    }
-    private void sol(int n,int[][] matrix,int r,int c){
-        if(r==n){
-            addBoard(matrix);
-            return;
-        }
-        for(int i=0;i<n;i++){
-            if(isSafe(matrix,r,i))
-            {
-                matrix[r][i]=1;
-                sol(n,matrix,r+1,i);
-                matrix[r][i]=0;
+    public static boolean isSafe(char[][] mat, int row, int col){
+            for(int i = row-1;i>=0;i--){
+                if(mat[i][col] == 'Q') return false;
             }
-        }
-    }
-    public void addBoard(int[][]matrix){
-        int n = matrix.length;
-        List<String> temp = new ArrayList<>();
-        for(int i=0;i<n;i++){
-            String str ="";
-            for(int j=0;j<n;j++){
-                if(matrix[i][j]==0)str+=".";
-                else str+="Q";
+            //diagonal
+            for(int i = row-1, j= col-1;i>=0 && j>=0;i--,j--){
+                if(mat[i][j] == 'Q') return false;
             }
-            temp.add(str);
+            // anti- diagonal
+            for(int i = row-1, j=col+1;i>=0 && j<mat[0].length;i--,j++){
+                if(mat[i][j] == 'Q') return false;
+            }
+            return true;
         }
-        result.add(temp);
-    }
+        public static void nQueens(int n, char[][] mat, int row, List<List<String>> res ){
+            if(row == n){
+                List<String> temp = new ArrayList<>();
+                for(int i=0;i<n;i++){
+                    String str = "";
+                    for(int j=0;j<mat[0].length;j++){
+                        str += mat[i][j];
+                    }
+                    temp.add(str);
+                }
+                res.add(temp);
+            }
+            for(int j=0;j<mat[0].length;j++){
+                if(isSafe(mat,row,j)){
+                    mat[row][j] = 'Q';
+                    nQueens(n,mat,row+1,res);
+                    mat[row][j] = '.';
+                }
+            }
+
+        }
     public List<List<String>> solveNQueens(int n) {
-        int[][]matrix = new int[n][n];
-        result=new ArrayList<>();
-        sol(n,matrix,0,0);
-        return result;
+        List<List<String>> res = new ArrayList<>();
+        char[][] mat = new char[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<mat[0].length;j++){
+                mat[i][j] = '.';
+            }
+        }
+        nQueens(n,mat,0,res);
+        return res;
     }
-}
+
+};
