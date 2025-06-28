@@ -15,9 +15,8 @@ class Solution {
 
         for(int i=s.length()-1; i>=0; i--){
             char ch = s.charAt(i);
-
             if(ch == '1'){
-                if(value + power <= k){
+                if(power + value <= k){
                     value += power;
                     maxLength++;
                 }
@@ -26,7 +25,11 @@ class Solution {
             if(power > (long)k){
                 break;
             }
+
         }
         return zerocount + maxLength;
     }
 }
+
+
+
